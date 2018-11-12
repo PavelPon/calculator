@@ -1,0 +1,44 @@
+package com.company;
+
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Scanner in = new Scanner(System.in);
+        System.out.print("Введите первое число: ");
+        double num1 = in.nextDouble();
+        System.out.print("Введите второе число: ");
+        double num2 = in.nextDouble();// Ввод переменных
+        System.out.println("Укажите действие над числами: ");
+        System.out.println("(сложение: '+'");
+        System.out.println("вычитание: '-'");
+        System.out.println("умножение: '*'");
+        System.out.println("деление: '/')");
+        System.out.print("Действие: ");
+        String act = in.next();// ввод действия
+
+        String sum = "+";
+        String subtr = "-";
+        String multi = "*";
+        String divis = "/";
+// создаем стки для опрератора if
+        if (act.equals(sum)) { // для сравнения строк испольуется оператор equals
+            // (== только для ссылок на строки// )
+            double answer = num1 + num2;
+            System.out.print("Ответ: " + answer);
+        } else if (act.equals(subtr)) {
+            double answer = num1 - num2;
+            System.out.print("Ответ: " + answer);
+        } else if (act.equals(multi)) {
+            double answer = num1 * num2;
+            System.out.print("Ответ: " + answer);
+        } else if (act.equals(divis) && num2 == 0) {
+            System.out.print("Ответ: " + "бесконечность");
+        } else {
+            double answer = num1 / num2;
+            System.out.print("Ответ: " + answer);
+        }
+    }
+}
