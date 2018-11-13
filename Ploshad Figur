@@ -1,0 +1,149 @@
+// тело основной программы - главный класс
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        {
+            Scanner in = new Scanner(System.in);
+            System.out.print("Выбириет фигуру( 3: треугольник; 4: прямоугольник; 0: круг):  ");
+            int numF = in.nextInt();
+            if (numF == 3) {
+                System.out.print("Введите сторону A: ");
+                double a3 = in.nextDouble();
+                System.out.print("Введите сторону B: ");
+                double b3 = in.nextDouble();
+                System.out.print("Введите сторону C : ");
+                double c3 = in.nextDouble();
+                double r3 = 0;
+                double alpha3 = 0;
+                Treugolnik oneTr = new Treugolnik(numF, a3, b3, c3, r3, alpha3);
+                oneTr.plashad();
+            } else if (numF == 4) {
+                System.out.print("Введите сторону A: ");
+                double a3 = in.nextDouble();
+                System.out.print("Введите сторону B: ");
+                double b3 = in.nextDouble();
+                double c3 = 0;
+                double r3 = 0;
+                double alpha3 = 0;
+                Kvadrat oneKv = new Kvadrat(numF, a3, b3, c3, r3, alpha3);
+                oneKv.plashad();
+            } else if (numF == 0) {
+
+                double a3 = 0;
+                double b3 = 0;
+                double c3 = 0;
+                System.out.print("Введите радиус: ");
+                double r3 = in.nextDouble();
+                double alpha3 = 0;
+                Krug oneKr = new Krug(numF, a3, b3, c3, r3, alpha3);
+                oneKr.plashad();
+            }
+        }
+    }
+
+}
+//  под класс фигуры
+public class Figuri {
+
+    private int mNumGranei;
+    private double mA;
+    private double mB;
+    private double mC;
+    private double mR;
+    private double mAlpha;
+
+    public Figuri(int numG, double a, double b, double c, double r, double alpha) {
+
+        mNumGranei = numG;
+        mA = a;
+        mB = b;
+        mC = c;
+        mR = r;
+        mAlpha = alpha;
+    }
+
+
+    public int getmNumGranei() {
+        return mNumGranei;
+    }
+
+    public double getmA() {
+        return mA;
+    }
+
+    public double getmB() {
+        return mB;
+    }
+
+    public double getmC() {
+        return mC;
+    }
+
+    public double getmR() {
+        return mR;
+    }
+
+    public double getmAlpha() {
+        return mAlpha;
+    }
+}
+
+// обект 1 треугольник
+
+public class Treugolnik extends Figuri {
+
+
+    public Treugolnik(int numG, double a, double b, double c, double r, double alpha) {
+        super(numG, a, b, c, r, alpha);
+
+    }
+
+    public void plashad() {
+        double ia = getmA();
+        double ib = getmB();
+        double ic = getmC();
+        double p = (ia + ib + ic) / 2;
+
+        if (p - ia <= 0 || p - ib <= 0 || p - ic <= 0) {
+            System.out.print("эта фигура невозможна");
+        } else {
+            double answer = 0.5 * Math.sqrt(p * (p - ia) * (p - ib) * (p - ic));
+            System.out.print("Площадь фигуры равна: "+answer);
+        }
+    }
+}
+
+// обьект 2 прямоугольник
+
+public class Kvadrat extends Figuri {
+    public Kvadrat(int numG, double a, double b, double c, double r, double alpha) {
+        super(numG, a, b, c, r, alpha);
+    }
+    public void plashad() {
+        double a = getmA();
+        double b = getmB();
+        double answer = a * b;
+        System.out.print("Площадь фигуры равна: "+answer);
+    }
+}
+
+//  обьект 3 круг
+
+public class Krug extends Figuri {
+    public Krug(int numG, double a, double b, double c, double r, double alpha) {
+        super(numG, a, b, c, r, alpha);
+    }
+
+    public void plashad() {
+        double r = getmR();
+
+        double answer = Math.PI * Math.pow(r, 2);
+        System.out.print("Площадь фигуры равна: "+answer);
+    }
+
+
+}
+
+
