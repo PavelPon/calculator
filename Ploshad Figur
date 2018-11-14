@@ -10,34 +10,26 @@ public class Main {
             int numF = in.nextInt();
             if (numF == 3) {
                 System.out.print("Введите сторону A: ");
-                double a3 = in.nextDouble();
+                double a = in.nextDouble();
                 System.out.print("Введите сторону B: ");
-                double b3 = in.nextDouble();
+                double b = in.nextDouble();
                 System.out.print("Введите сторону C : ");
-                double c3 = in.nextDouble();
-                double r3 = 0;
-                double alpha3 = 0;
-                Treugolnik oneTr = new Treugolnik(numF, a3, b3, c3, r3, alpha3);
+                double c = in.nextDouble();
+
+                Treugolnik oneTr = new Treugolnik(a, b, c);
                 oneTr.plashad();
+                
             } else if (numF == 4) {
                 System.out.print("Введите сторону A: ");
-                double a3 = in.nextDouble();
+                double a = in.nextDouble();
                 System.out.print("Введите сторону B: ");
-                double b3 = in.nextDouble();
-                double c3 = 0;
-                double r3 = 0;
-                double alpha3 = 0;
-                Kvadrat oneKv = new Kvadrat(numF, a3, b3, c3, r3, alpha3);
+                double b = in.nextDouble();
+                Kvadrat oneKv = new Kvadrat(a, b);
                 oneKv.plashad();
             } else if (numF == 0) {
-
-                double a3 = 0;
-                double b3 = 0;
-                double c3 = 0;
                 System.out.print("Введите радиус: ");
-                double r3 = in.nextDouble();
-                double alpha3 = 0;
-                Krug oneKr = new Krug(numF, a3, b3, c3, r3, alpha3);
+                double r = in.nextDouble();
+                Krug oneKr = new Krug(r);
                 oneKr.plashad();
             }
         }
@@ -87,6 +79,21 @@ public class Figuri {
 
     public double getmAlpha() {
         return mAlpha;
+   }
+   public Figuri(double r) {
+        mR = r;
+
+    }
+
+    public Figuri(double a, double b, double c) {
+        mA = a;
+        mB = b;
+        mC = c;
+    }
+
+    public Figuri(double a, double b) {
+        mA = a;
+        mB = b;
     }
 }
 
@@ -95,8 +102,8 @@ public class Figuri {
 public class Treugolnik extends Figuri {
 
 
-    public Treugolnik(int numG, double a, double b, double c, double r, double alpha) {
-        super(numG, a, b, c, r, alpha);
+    public Treugolnik(double a, double b, double c) {
+        super(a, b, c);
 
     }
 
@@ -118,8 +125,8 @@ public class Treugolnik extends Figuri {
 // обьект 2 прямоугольник
 
 public class Kvadrat extends Figuri {
-    public Kvadrat(int numG, double a, double b, double c, double r, double alpha) {
-        super(numG, a, b, c, r, alpha);
+    public Kvadrat(double a, double b) {
+        super(a, b);
     }
     public void plashad() {
         double a = getmA();
@@ -132,8 +139,8 @@ public class Kvadrat extends Figuri {
 //  обьект 3 круг
 
 public class Krug extends Figuri {
-    public Krug(int numG, double a, double b, double c, double r, double alpha) {
-        super(numG, a, b, c, r, alpha);
+    public Krug(double r) {
+        super(r);
     }
 
     public void plashad() {
