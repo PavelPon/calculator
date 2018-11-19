@@ -1,0 +1,216 @@
+// основная программа для фигур
+import java.util.Comparator;
+import java.util.*;
+import java.util.Map;
+import java.util.TreeMap;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        HashMap<Integer, Double> hashMap = new HashMap<>();
+        ValueComparator vI = new ValueComparator(hashMap);
+        TreeMap<Integer, Double> treeMap = new TreeMap<Integer, Double>(vI);
+        int i = 0;
+        do {
+            i++;
+            Scanner in = new Scanner(System.in);
+            System.out.print("Выбириет фигуру( 3: треугольник; 4: прямоугольник; 0: круг):  ");
+            int numF = in.nextInt();
+            if (numF == 3) {
+                System.out.print("Введите основание треугольника: ");
+                double a = in.nextDouble();
+                System.out.print("Введите высоту треугольника: ");
+                double b = in.nextDouble();
+                Treugolnik oneTr = new Treugolnik(a, b);
+                double pl = oneTr.ploshad();
+                hashMap.put(i, pl);
+
+            } else if (numF == 4) {
+                System.out.print("Введите сторону A: ");
+                double a = in.nextDouble();
+                System.out.print("Введите сторону B: ");
+                double b = in.nextDouble();
+                Kvadrat oneKv = new Kvadrat(a, b);
+                double pl = oneKv.ploshad();
+                hashMap.put(i, pl);
+            } else if (numF == 0) {
+                System.out.print("Введите радиус: ");
+                double r = in.nextDouble();
+                Krug oneKr = new Krug(r);
+                double pl = oneKr.ploshad();
+                hashMap.put(i, pl);
+
+            }
+
+        } while (i < 10);
+
+        System.out.println("первоночальный список: " + hashMap);
+        treeMap.putAll(hashMap);
+        System.out.println("конечный список: " + treeMap);
+        System.out.println(treeMap.values());
+    }
+
+    static class ValueComparator implements Comparator<Integer> {
+        HashMap<Integer, Double> base;
+
+        public ValueComparator(HashMap<Integer, Double> base) {
+            this.base = base;
+
+        }
+
+
+        public int compare(Integer a, Integer b) {
+            if (base.get(a) >= base.get(b)) {
+                return 1;
+
+
+            } else {
+                return -1;
+            }
+        }
+    }
+
+}
+//под класс фигуры
+
+import java.util.Objects;
+
+public class Figuri {
+
+
+    private double mA;
+    private double mB;
+    private double mC;
+    private double mR;
+    private double mAlpha;
+
+    public Figuri(double a, double b, double c, double r, double alpha) {
+
+
+        mA = a;
+        mB = b;
+        mC = c;
+        mR = r;
+        mAlpha = alpha;
+    }
+
+    public double getmA() {
+        return mA;
+    }
+
+    public double getmB() {
+        return mB;
+    }
+
+    public double getmC() {
+        return mC;
+    }
+
+    public double getmR() {
+        return mR;
+    }
+
+    public double getmAlpha() {
+        return mAlpha;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Figuri)) return false;
+        Figuri figuri = (Figuri) o;
+        return Double.compare(figuri.getmA(), getmA()) == 0 &&
+                Double.compare(figuri.getmB(), getmB()) == 0 &&
+                Double.compare(figuri.getmC(), getmC()) == 0 &&
+                Double.compare(figuri.getmR(), getmR()) == 0 &&
+                Double.compare(figuri.getmAlpha(), getmAlpha()) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getmA(), getmB(), getmC(), getmR(), getmAlpha());
+    }
+
+    public Figuri(double r) {
+        mR = r;
+
+    }
+
+    public Figuri(double a, double b, double c) {
+        mA = a;
+        mB = b;
+        mC = c;
+    }
+
+    public Figuri(double a, double b) {
+        mA = a;
+        mB = b;
+    }
+}
+
+// класс для создания обьектов типа круг
+
+public class Krug extends Figuri {
+
+
+    public Krug(double r) {
+        super(r);
+    }
+
+
+    public double ploshad() {
+        double r = getmR();
+
+        double pl = Math.PI * Math.pow(r, 2);
+       // System.out.print("Площадь фигуры равна: "+pl);
+        return pl;
+    }
+
+
+}
+
+// класс для создания фигур типа прямоугольник
+
+
+public class Kvadrat extends Figuri {
+
+
+    public Kvadrat(double a, double b) {
+        super(a, b);
+    }
+
+    public double ploshad() {
+        double a = getmA();
+        double b = getmB();
+        double pl = a * b;
+       // System.out.print("Площадь фигуры равна: " + pl);
+        return pl;
+    }
+
+}
+
+// класс для создания фигур типа треугольник
+
+public class Treugolnik<retu> extends Figuri {
+
+
+    public Treugolnik(double a, double b) {
+        super(a, b);
+    }
+
+
+
+    public double ploshad() {
+        double ia = getmA();
+        double ib = getmB();
+        double pl = (ia * ib)/ 2d;
+
+            //System.out.print("Площадь фигуры равна: " + pl);
+return pl;
+        }
+
+
+
+}
+
