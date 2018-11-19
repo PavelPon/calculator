@@ -1,0 +1,52 @@
+// сортировка по площади мини версия
+
+ackage com.company;
+
+import java.util.Comparator;
+import java.util.Map;
+import java.util.*;
+import java.util.TreeMap;
+import java.util.Iterator;
+import java.util.Set;
+
+public class Main {
+
+    public static void main(String[] args) {
+        HashMap<String, Integer> hashMap = new HashMap<>();
+        ValueComparator not = new ValueComparator(hashMap);
+        TreeMap<String, Integer> treeMap = new TreeMap<String, Integer>(not);
+        hashMap.put("1", 12);
+        hashMap.put("2", 9898);
+        hashMap.put("4", 132);
+        hashMap.put("9", 563);
+        hashMap.put("7", 9978987);
+        hashMap.put("3", 76);
+        hashMap.put("5", 89);
+        System.out.println("первоночальный список: " + hashMap);
+        treeMap.putAll(hashMap);
+        System.out.println("конечный список: " + treeMap);
+        System.out.println(treeMap.values());
+    }
+
+    static class ValueComparator implements Comparator<String> {
+        Map<String, Integer> base;
+
+        public ValueComparator(Map<String, Integer> base) {
+            this.base = base;
+
+        }
+
+        public int compare(String a, String b) {
+            if (base.get(a) >= base.get(b)) {
+                return 1;
+
+
+            } else {
+                return -1;
+            }
+        }
+    }
+
+}
+
+
